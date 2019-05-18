@@ -1,0 +1,16 @@
+.avatar {
+    max-width: 64px;
+    max-height: 64px;
+}
+
+.clickeablerow {
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+}
+
+.orderbtn {
+    float: right;
+}

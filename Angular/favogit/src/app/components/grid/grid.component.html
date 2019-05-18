@@ -1,0 +1,48 @@
+<div *ngIf="list">
+  <button mat-raised-button (click)="changeOrder()" class="orderbtn">
+    {{order}}
+  </button>
+  <div *ngIf="total" class="mat-h2">Count: {{total}}</div>
+</div>
+<table #table mat-table [dataSource]="list" class="mat-elevation-z8">
+  <ng-container matColumnDef="avatar_url">
+      <th mat-header-cell *matHeaderCellDef> Avatar </th>
+      <td mat-cell *matCellDef="let element" class="clickeablerow" (click)="openProfile(element)"> <img [src]="element.avatar_url" class="avatar" /> </td>
+  </ng-container>
+
+  <ng-container matColumnDef="login">
+    <th mat-header-cell *matHeaderCellDef> Login </th>
+    <td mat-cell *matCellDef="let element" class="clickeablerow" (click)="openProfile(element)"> {{element.login}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element" class="clickeablerow" (click)="openProfile(element)"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="created_at">
+    <th mat-header-cell *matHeaderCellDef> Created At </th>
+    <td mat-cell *matCellDef="let element" class="clickeablerow" (click)="openProfile(element)"> {{element.created_at | date : 'medium'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="followers">
+    <th mat-header-cell *matHeaderCellDef> Followers </th>
+    <td mat-cell *matCellDef="let element" class="clickeablerow" (click)="openProfile(element)"> {{element.followers}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="public_repos">
+    <th mat-header-cell *matHeaderCellDef> Public Repos </th>
+    <td mat-cell *matCellDef="let element" class="clickeablerow" (click)="openProfile(element)"> {{element.public_repos}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="is_favourite">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element" class="clickeablerow">
+        <svg (click)="addToFav(element)" *ngIf="element && !element.is_favourite" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+        <svg (click)="removeFromFav(element)" *ngIf="element && element.is_favourite" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsNames"></tr>
+  <tr mat-row *matRowDef="let row; columns: columnsNames;"></tr>
+</table>

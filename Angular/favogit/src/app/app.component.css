@@ -1,0 +1,21 @@
+h1 {
+    color: #365084;
+    text-align: center;
+}
+
+.h1link {
+    text-decoration: none;
+}
+
+.form {
+    min-width: 150px;
+    width: 100%;
+}
+
+.field {
+    width: 100%;
+}
+
+.favbtn {
+    margin-bottom: 10px;
+}
