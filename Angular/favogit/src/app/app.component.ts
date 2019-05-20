@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { GithubService } from './services/github.service';
-import { FavouriteService } from './services/favourite.service';
-import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +7,15 @@ import { User } from './models/user';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  name: string;
+
   constructor(
-      private router: Router,
-      private favouriteService: FavouriteService
+      private router: Router
     ) {
   }
 
   search(name: string): void {
-    this.router.navigateByUrl(`/users/search/${name}`);
+    this.router.navigate(['users/search', { login: name }])
   }
 
   toggleFavourites() {

@@ -16,6 +16,8 @@ import { GithubService } from 'src/app/services/github.service';
 export class GridComponent implements OnInit {
   list: User[];
   total: number;
+  showResults: boolean = false;
+  noUsersFound: boolean;
   order: string = 'Ascending Order';
   columnsNames: string[] = ['avatar_url', 'login', 'name', 'created_at', 'followers', 'public_repos', 'is_favourite']
   @ViewChild('table') table: MatTable<Element>;
@@ -30,11 +32,18 @@ export class GridComponent implements OnInit {
   ngOnInit(): void {
     if (this.isFavouritePage()) {
       this.list = this.favouriteService.get();
-      this.total = this.list.length;
+      if (this.list.length > 0) {
+        this.total = this.list.length;
+        this.showResults = true;
+        this.noUsersFound = false;
+      }
     }
     else {
-      let login: string = this.route.snapshot.paramMap.get('login');
-      this.doSearch(login);
+      this.route.params.subscribe(params => {
+        if (params['login']) {
+          this.doSearch(params['login']);
+        }
+      });
     }
   }
 
@@ -44,14 +53,20 @@ export class GridComponent implements OnInit {
 
   doSearch(login: string): void {
     this.githubService.searchUsers(login).subscribe(userResult => {
-      if (userResult.items) {
+      if (userResult.total_count) {
+        this.noUsersFound = false;
         forkJoin(userResult.items.map(item => this.githubService.getUser(item.login))).subscribe(users => {
           users.map(user => user.is_favourite = this.favouriteService.isFavourite(user.id));
           this.list = users;
           this.sort();
+          this.showResults = true;
         });
+        this.total = userResult.total_count;
       }
-      this.total = userResult.total_count;
+      else {
+        this.showResults = false;
+        this.noUsersFound = true;
+      }
     });
   }
 
@@ -69,8 +84,16 @@ export class GridComponent implements OnInit {
     this.favouriteService.remove(user);
     if (this.isFavouritePage()) {
       this.list = this.favouriteService.get();
-      this.total = this.list.length;
-      this.table.renderRows();
+      if (this.list.length > 0) {
+        this.total = this.list.length;
+        this.table.renderRows();
+        this.showResults = true;
+        this.noUsersFound = false;
+      }
+      else {
+        this.showResults = false;
+        this.noUsersFound = false;
+      }
     }
   }
 

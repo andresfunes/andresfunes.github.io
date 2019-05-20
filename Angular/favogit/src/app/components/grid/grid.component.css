@@ -14,3 +14,7 @@ table {
 .orderbtn {
     float: right;
 }
+
+.notfound {
+    color: red;
+}
