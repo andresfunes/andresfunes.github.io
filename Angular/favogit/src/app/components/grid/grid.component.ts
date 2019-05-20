@@ -107,7 +107,11 @@ export class GridComponent implements OnInit {
     }
   }
 
-  private isFavouritePage(): boolean {
+  isFavouritePage(): boolean {
     return this.route.snapshot.url.toString() === "users,favourites";
+  }
+
+  isEmptyFav(): boolean {
+    return this.favouriteService.get().length == 0;
   }
 }

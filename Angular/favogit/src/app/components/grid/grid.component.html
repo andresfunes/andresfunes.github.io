@@ -1,3 +1,4 @@
+<div class="mat-h2" *ngIf="isFavouritePage()">Favourite List{{isEmptyFav() ? ' is Empty' : ''}}</div>
 <div *ngIf="showResults">
   <button mat-raised-button (click)="changeOrder()" class="orderbtn">
     {{order}}
