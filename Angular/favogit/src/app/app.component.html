@@ -9,7 +9,7 @@
 
 <form class="form" (keydown.enter)="$event.preventDefault()">
     <mat-form-field class="field">
-      <input matInput #searchBox id="search-box" placeholder="GitHub Users Name" (keydown.enter)="search(searchBox.value)">
+      <input matInput #searchBox id="search-box" autofocus placeholder="GitHub Users Name" (keydown.enter)="search(searchBox.value)">
     </mat-form-field>
 </form>
 
