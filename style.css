@@ -6,7 +6,6 @@ body {
 
 canvas {
   display: block;
-  vertical-align: bottom;
 }
 
 #particles-js {
@@ -20,3 +19,23 @@ canvas {
   background-position: 50% 50%;
 }
 
+.strokeme {
+  color: white;
+  text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
+}
+
+h1.centered-axis-xy {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%,-50%);
+  font-size: 50px;
+}
+
+h2.centered-axis-xy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font-size: 40px;
+}
