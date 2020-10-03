@@ -63,3 +63,7 @@ span a svg {
   height: 1em;
   vertical-align: bottom;
 }
+
+span a svg:hover {
+  fill: lightblue;
+}
