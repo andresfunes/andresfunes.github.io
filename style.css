@@ -24,6 +24,14 @@ canvas {
   text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000;
 }
 
+.centered-axis-xy {
+  position: absolute;
+  left: 46%;
+  top: 70%;
+  transform: translate(-50%,-50%);
+  font-size: 50px;
+}
+
 h1.centered-axis-xy {
   position: absolute;
   left: 50%;
@@ -38,4 +46,20 @@ h2.centered-axis-xy {
   top: 50%;
   transform: translate(-50%,-50%);
   font-size: 40px;
+}
+
+span {
+  display: flex;
+  font-size: 1em;
+}
+
+span a {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+span a svg {
+  fill: white;
+  height: 1em;
+  vertical-align: bottom;
 }
